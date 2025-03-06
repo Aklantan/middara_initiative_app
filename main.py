@@ -5,7 +5,7 @@ import random
 import json
 
 
-# -------------------- Variables ---------------------------------------#
+# -------------------- Variables ----------------------------------------#
 #
 #
 
@@ -32,12 +32,16 @@ clicked = StringVar()
 #Create lower Frame
 low_frame = Frame(height  = 100, width = 200, borderwidth=1, relief= "solid", padx=20, pady=20)
 low_frame.grid(row = 1, column = 1, columnspan = 3)
+bottom_frame = Frame(height  = 100, width = 200, borderwidth=1, relief= "solid", padx=20, pady=20)
+bottom_frame.grid(row = 2, column = 1, columnspan = 3)
+right_frame = Frame(height  = 300, width = 200, borderwidth=1, relief= "solid", padx=20, pady=20)
+right_frame.grid(row = 1, column = 5, rowspan = 3)
 
 #create buttons
 gen_iniative = Button(low_frame,text = "Add Character ",  height=1)
-gen_iniative.grid(row = 2 , column = 3)
+gen_iniative.grid(row = 1 , column = 3)
 
-save_pass = Button(low_frame, text = "Roll Iniative", height=1, width =36)
+save_pass = Button(bottom_frame, text = "Roll Iniative", height=1, width =36)
 save_pass.grid(row = 3, column =1, columnspan =2 )
 
 
