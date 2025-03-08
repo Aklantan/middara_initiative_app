@@ -4,6 +4,7 @@ from tkinter.ttk import *
 import random
 #import pyperclip
 import json
+from combatant import Combat_Window
 from PIL import Image,ImageTk
 
 
@@ -18,7 +19,7 @@ options = [
     "Zeke"
 ] 
 
-chosen = []
+chosen = set()
 
 
 
@@ -34,6 +35,8 @@ def add_character():
     item_frame = Frame(right_frame)
     item_frame.pack(pady=2)
 
+    chosen.add(clicked.get())
+
     label = Label(item_frame, text = clicked.get())
     label.pack(side="left",padx=5)
 
@@ -42,9 +45,9 @@ def add_character():
 
 
 def roll_iniative():
-    combat_window = Tk()
+    combat_window = Combat_Window(chosen)
     combat_window.title("Combat")
-    main_window.geometry("600x600")
+    combat_window.geometry("600x600")
 
 
 
