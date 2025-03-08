@@ -4,6 +4,7 @@ from tkinter.ttk import *
 import random
 #import pyperclip
 import json
+from PIL import Image,ImageTk
 
 
 # -------------------- Variables ----------------------------------------#
@@ -18,6 +19,8 @@ options = [
 ] 
 
 chosen = []
+
+
 
 
 
@@ -38,6 +41,10 @@ def add_character():
     remove_button.pack(side="right",padx=5)
 
 
+def roll_iniative():
+    combat_window = Tk()
+    combat_window.title("Combat")
+    main_window.geometry("600x600")
 
 
 
@@ -50,6 +57,8 @@ def add_character():
 main_window = Tk()
 main_window.title("Middara Iniative App")
 main_window.resizable(0,0)
+main_window.geometry("600x600")
+main_window.grid_propagate(False)
 main_window.config(pady=50, padx=50)
 
 clicked = StringVar()
@@ -58,18 +67,28 @@ style.configure("FRAME")
 
 
 #Create Frames
+top_frame = Frame(height  = 100, width = 200, relief= "solid",padding=20)
+top_frame.grid(row=0,column=1,columnspan=4)
 low_frame = Frame(height  = 100, width = 200, relief= "solid",padding=20)
 low_frame.grid(row = 1, column = 1, columnspan = 3)
 bottom_frame = Frame(height  = 100, width = 200, relief= "solid",padding = 20)
 bottom_frame.grid(row = 2, column = 1, columnspan = 3)
 right_frame = Frame(height  = 300, width = 200, borderwidth=1, relief= "solid", padding = 20)
-right_frame.grid(row = 1, column = 5, rowspan = 3)
+right_frame.grid(row = 1, column = 4, rowspan = 3)
+
+
+#Put Middara Logo at top
+image = Image.open("assets/middarralogo.png")
+resize_img = image.resize((300,200))
+tk_img = ImageTk.PhotoImage(resize_img)
+image_label = Label(top_frame,image=tk_img)
+image_label.pack()
 
 #create buttons
 gen_iniative = Button(low_frame,text = "Add Character ",command=add_character)
 gen_iniative.grid(row = 1 , column = 3)
 
-save_pass = Button(bottom_frame, text = "Roll Iniative")
+save_pass = Button(bottom_frame, text = "Roll Iniative",command=roll_iniative)
 save_pass.grid(row = 5, column =1, columnspan =2 )
 
 
