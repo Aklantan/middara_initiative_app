@@ -44,6 +44,8 @@ def add_character():
     remove_button.pack(side="right",padx=5)
 
 
+#Function to open the combat window and move to the next stage of the application.
+
 def roll_iniative():
     combat_window = Combat_Window(chosen)
     combat_window.title("Combat")
