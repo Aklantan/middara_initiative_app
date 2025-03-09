@@ -49,7 +49,7 @@ def add_character():
 def roll_iniative():
     combat_window = Combat_Window(chosen)
     combat_window.title("Combat")
-    combat_window.geometry("600x600")
+    combat_window.geometry("800x800")
 
 
 
