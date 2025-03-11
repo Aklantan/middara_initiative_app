@@ -32,7 +32,7 @@ chosen = set()
 # Function to take the value of the combobox and add it to the right frame with a corresponding Remove button.
 
 def add_character():
-    item_frame = Frame(right_frame)
+    item_frame = Frame(right_canvas)
     item_frame.pack(pady=2)
 
     chosen.add(clicked.get())
@@ -49,7 +49,7 @@ def add_character():
 def roll_iniative():
     combat_window = Combat_Window(chosen)
     combat_window.title("Combat")
-    combat_window.geometry("800x800")
+    combat_window.geometry("1080x860")
 
 
 
@@ -72,36 +72,40 @@ style.configure("FRAME")
 
 
 #Create Frames
-top_frame = Frame(height  = 100, width = 200, relief= "solid",padding=20)
-top_frame.grid(row=0,column=1,columnspan=4)
-low_frame = Frame(height  = 100, width = 200, relief= "solid",padding=20)
-low_frame.grid(row = 1, column = 1, columnspan = 3)
-bottom_frame = Frame(height  = 100, width = 200, relief= "solid",padding = 20)
-bottom_frame.grid(row = 2, column = 1, columnspan = 3)
-right_frame = Frame(height  = 300, width = 200, borderwidth=1, relief= "solid", padding = 20)
-right_frame.grid(row = 1, column = 4, rowspan = 3)
+top_canvas = Canvas(height  = 100, width = 200)
+top_canvas.grid_propagate(False)
+top_canvas.grid(row=0,column=1,columnspan=4)
+low_canvas = Canvas(height  = 100, width = 350)
+low_canvas.grid_propagate(False)
+low_canvas.grid(row = 1, column = 1, columnspan = 3)
+bottom_canvas = Canvas(height  = 100, width = 300)
+bottom_canvas.grid_propagate(False)
+bottom_canvas.grid(row = 2, column = 1, columnspan = 3)
+right_canvas = Canvas(height  = 300, width = 200)
+right_canvas.grid_propagate(False)
+right_canvas.grid(row = 1, column = 4, rowspan = 3)
 
 
 #Put Middara Logo at top
 image = Image.open("assets/middarralogo.png")
 resize_img = image.resize((300,200))
 tk_img = ImageTk.PhotoImage(resize_img)
-image_label = Label(top_frame,image=tk_img)
+image_label = Label(top_canvas,image=tk_img)
 image_label.pack()
 
 #create buttons
-gen_iniative = Button(low_frame,text = "Add Character ",command=add_character)
+gen_iniative = Button(low_canvas,text = "Add Character ",command=add_character)
 gen_iniative.grid(row = 1 , column = 3)
 
-save_pass = Button(bottom_frame, text = "Roll Iniative",command=roll_iniative)
-save_pass.grid(row = 5, column =1, columnspan =2 )
+save_pass = Button(bottom_canvas, text = "Roll Iniative",command=roll_iniative)
+save_pass.place(x=130,y=40 )
 
 
 #create entry lines
 
 
-enter_user = Combobox(low_frame,textvariable=clicked,values=options)
-enter_user.grid(row = 1, column =1, columnspan = 2)
+enter_user = Combobox(low_canvas,textvariable=clicked,values=options)
+enter_user.grid(row = 1, column =1, columnspan = 1)
 
 
 # #Create Labels for entry lines

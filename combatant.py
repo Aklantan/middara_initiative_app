@@ -10,12 +10,18 @@ class Combat_Window(Tk):
         self.chosen = list(chosen)
         self.position = 0
 
-        self.top_frame = Frame(self)
-        self.top_frame.grid(column=0,row=0,columnspan=10,pady=2)
+        self.top_canvas = Canvas(self,width=600,height=100)
+        self.top_canvas.grid_propagate(False)
+        self.top_canvas.grid(column=0,row=0,columnspan=10,pady=2)
+        self.top_scroll = Scrollbar(self,orient="horizontal",command=self.top_canvas.xview)
+        self.top_scroll.grid(column=0,row=1,columnspan=10)
+        self.top_canvas.config(xscrollcommand=self.top_scroll.set)
+        
 
-        self.nxframe = Frame(self)
-        self.nxframe.grid(column=10,row=1)
-        self.next_round_b = Button(self.nxframe,text = "Next Round",command=self.next_round)
+        self.nxcanvas = Canvas(self,width=45,height=100)
+        self.nxcanvas.grid(column=10,row=1)
+        self.nxcanvas.grid_propagate(False)
+        self.next_round_b = Button(self.nxcanvas,text = "Next Round",command=self.next_round)
         self.next_round_b.pack()        
         self.next_round()
 
@@ -28,7 +34,7 @@ class Combat_Window(Tk):
 
     #Function to clear the iniative track.
     def clear_init_track(self):
-        for widget in self.top_frame.winfo_children():
+        for widget in self.top_canvas.winfo_children():
             widget.destroy()
 
 
@@ -54,7 +60,7 @@ class Combat_Window(Tk):
 
     def rebuild_track(self):
         for chose in self.chosen:            
-            item_frame = Frame(self.top_frame)
+            item_frame = Frame(self.top_canvas)
             item_frame.grid(column=self.position,row=1,padx=5,pady=5)
             combatant = Button(item_frame,text = chose)
             combatant.pack()
@@ -67,6 +73,9 @@ class Combat_Window(Tk):
             left_button.pack(side="left",padx=5)
             right_button = Button(item_frame,text=">",command=lambda chosen_item=chose: self.move_right(chosen_item))
             right_button.pack(side="right",padx=5)
+
+            self.top_canvas.config(scrollregion=self.top_canvas.bbox("all"))
+            print(self.top_canvas.bbox("all"))
 
             self.position += 1
         self.position = 0
