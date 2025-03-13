@@ -60,64 +60,64 @@ class Combat_Window(Tk):
 
 
     def rebuild_track(self):
-        # for chose in self.chosen:            
-        #     item_frame = Frame(self.top_canvas)
-        #     item_frame.grid(column=self.position,row=1,padx=5,pady=5)
-        #     combatant = Button(item_frame,text = chose)
-        #     combatant.pack()
-        #     remove_button = Button(item_frame,text="Remove",command=lambda chosen_item=chose, frame=item_frame:(
-        #         self.chosen.remove(chosen_item),
-        #         frame.destroy()
-        #     ))
-        #     remove_button.pack(padx=5)
-        #     left_button = Button(item_frame,text="<",command=lambda chosen_item=chose: self.move_left(chosen_item))
-        #     left_button.pack(side="left",padx=5)
-        #     right_button = Button(item_frame,text=">",command=lambda chosen_item=chose: self.move_right(chosen_item))
-        #     right_button.pack(side="right",padx=5)
+        for chose in self.chosen:            
+            item_frame = Frame(self.top_canvas)
+            item_frame.grid(column=self.position,row=1,padx=5,pady=5)
+            combatant = Button(item_frame,text = chose)
+            combatant.pack()
+            remove_button = Button(item_frame,text="Remove",command=lambda chosen_item=chose, frame=item_frame:(
+                self.chosen.remove(chosen_item),
+                frame.destroy()
+            ))
+            remove_button.pack(padx=5)
+            left_button = Button(item_frame,text="<",command=lambda chosen_item=chose: self.move_left(chosen_item))
+            left_button.pack(side="left",padx=5)
+            right_button = Button(item_frame,text=">",command=lambda chosen_item=chose: self.move_right(chosen_item))
+            right_button.pack(side="right",padx=5)
 
         #     self.top_canvas.config(scrollregion=self.top_canvas.bbox("all"))
         #     print(self.top_canvas.bbox("all"))
 
           
 
-        self.position = 0  # Reset position tracker for horizontal placement
-        for chose in self.chosen:            
-        # Create a frame for each item
-            item_frame = Frame(self.top_canvas)
+    #     self.position = 0  # Reset position tracker for horizontal placement
+    #     for chose in self.chosen:            
+    #     # Create a frame for each item
+    #         item_frame = Frame(self.top_canvas)
         
-        # Embed the frame in the canvas using create_window
-            self.top_canvas.create_window(
-                (self.position, 10),  # Position (x, y) in canvas coordinates
-                window=item_frame, 
-                anchor="nw"  # Anchor top-left of the frame to the position
-        )
+    #     # Embed the frame in the canvas using create_window
+    #         self.top_canvas.create_window(
+    #             (self.position, 10),  # Position (x, y) in canvas coordinates
+    #             window=item_frame, 
+    #             anchor="nw"  # Anchor top-left of the frame to the position
+    #     )
 
-        # Add widgets to the frame
-            combatant = Button(item_frame, text=chose)
-            combatant.pack()
+    #     # Add widgets to the frame
+    #         combatant = Button(item_frame, text=chose)
+    #         combatant.pack()
 
-            remove_button = Button(
-                item_frame, text="Remove",
-                command=lambda chosen_item=chose, frame=item_frame: (
-                    self.chosen.remove(chosen_item),
-                    frame.destroy(),
-                    self.rebuild_track()  # Rebuild track after removing
-            )
-        )
-            remove_button.pack(padx=5)
+    #         remove_button = Button(
+    #             item_frame, text="Remove",
+    #             command=lambda chosen_item=chose, frame=item_frame: (
+    #                 self.chosen.remove(chosen_item),
+    #                 frame.destroy(),
+    #                 self.rebuild_track()  # Rebuild track after removing
+    #         )
+    #     )
+    #         remove_button.pack(padx=5)
 
-            left_button = Button(item_frame, text="<", command=lambda chosen_item=chose: self.move_left(chosen_item))
-            left_button.pack(side="left", padx=5)
+    #         left_button = Button(item_frame, text="<", command=lambda chosen_item=chose: self.move_left(chosen_item))
+    #         left_button.pack(side="left", padx=5)
         
-            right_button = Button(item_frame, text=">", command=lambda chosen_item=chose: self.move_right(chosen_item))
-            right_button.pack(side="right", padx=5)
+    #         right_button = Button(item_frame, text=">", command=lambda chosen_item=chose: self.move_right(chosen_item))
+    #         right_button.pack(side="right", padx=5)
 
-        # Increment horizontal position for the next frame
-            self.position += item_frame.winfo_reqwidth() + 200  
+    #     # Increment horizontal position for the next frame
+    #         self.position += item_frame.winfo_reqwidth() + 200  
 
-    # Update scroll region after adding all items
-            self.top_canvas.config(scrollregion=self.top_canvas.bbox("all"))
-            print(self.top_canvas.bbox("all"))
+    # # Update scroll region after adding all items
+    #         self.top_canvas.config(scrollregion=self.top_canvas.bbox("all"))
+    #         print(self.top_canvas.bbox("all"))
 
             self.position += 1
         self.position = 0
