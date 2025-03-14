@@ -113,7 +113,7 @@ class Combat_Window(Tk):
     #         right_button.pack(side="right", padx=5)
 
     #     # Increment horizontal position for the next frame
-    #         self.position += item_frame.winfo_reqwidth() + 200  
+    #         self.position += item_frame.winfo_reqwidth() + 200  .
 
     # # Update scroll region after adding all items
     #         self.top_canvas.config(scrollregion=self.top_canvas.bbox("all"))
